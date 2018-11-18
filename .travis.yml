@@ -8,8 +8,10 @@ script:
 - go build -ldflags="-H windowsgui" -o iwp.exe
 deploy:
   provider: releases
+  skip_cleanup: true
   api_key:
     secure: e/nUrAnmS3sGADxk+3FbbsyeUgqqZtycyX0y1Zy3ImwVC5R+eHZpOwCWoBxIMXIhomOX/821Gf7B+ep2WOJtSQ0cIZvuMlIGd5DUUGBF3KdHHo0NwemI5vAIXcPsAsSY8+buW4tk8uVtZ3GrzJsy95zTImWKl/z7IG7X87W/74OhpTHoQ4T5h3gJaNhyYZiRcoatiAREHc4ajTLxvhEXK1kTwL0bE746luy6AWCzs9rYK1O+wfszhT2iGZzpm+vW8j78wG8ziDend+raSPd8FR7ZJ8vSmeJ7SjQ9K+ktw2H/lJa4qCExUQi7SETCiezdqVsAEbESgZEgybsq9SFSpR3uHSm/SZtO8YG4I7a+Nt73pJEos6dOd8r+KAq9w8DVx6KGtEIAI3rs4wYjlZugVQNMVfQCsPTMid96jmtROQSMEwlxVAX00s1y0nM+JntXV/v30V0QFGTn954AgNk/HS9Epice18pvZhkz3o4Jc1wkk+5t0xgVwnzI4iDj4WOIjIwnJ7AT0+jzbVsPidE6hCxxIKdw+JNBYPZTZGeBdND/H3I42Z79L12uCBNT26L9dSZ/+7jNMNJuNfGGpCVV87KDpBqKrd1n5LM4xyM//dkMAniwea/JUXB5TbNeVcYgpFjNqBgpVSc9LWynoVcoZxkicomNfHBf6D+UYl89mec=
   file: iwp.exe
   on:
     repo: meyskens/iwp
+    tags: true
