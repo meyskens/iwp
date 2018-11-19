@@ -2,6 +2,7 @@ os: windows
 language: go
 install:
   - choco install mingw 
+  - choco install nodejs 
   - npm i -g babel-cli
 script:
 - cd frontend
