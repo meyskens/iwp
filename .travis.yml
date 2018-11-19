@@ -1,10 +1,10 @@
 os: windows
 language: go
+node_js: '10'
 install:
   - choco install mingw 
   - choco install nodejs 
-  - refreshenv
-  - npm i -g babel-cli
+  - powershell "npm i -g babel-cli"
 script:
 - cd frontend
 - cd app
