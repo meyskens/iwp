@@ -3,6 +3,7 @@ language: go
 install:
   - choco install mingw 
   - choco install nodejs 
+  - refreshenv
   - npm i -g babel-cli
 script:
 - cd frontend
