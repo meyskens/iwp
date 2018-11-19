@@ -23,7 +23,7 @@ var am = new Vue({
         },
         openBrowser(url) {
             console.log(url)
-            goapp.openURL(url)
+            window.goapp.openURL(url)
         }
     }
 })
