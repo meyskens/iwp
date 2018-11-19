@@ -4,13 +4,13 @@ node_js: '10'
 install:
   - choco install mingw 
   - choco install nodejs 
-  - powershell "npm i -g babel-cli"
+  - C:/Program\ Files/nodejs/npm i -g babel-cli
 script:
 - cd frontend
 - cd app
-- npm i
-- babel -o ./ui.js ./ui.js
-- babel -o ./vm.js ./vm.js
+- C:/Program\ Files/nodejs/npm i
+- $HOME/AppData/Roaming/npm/babel -o ./ui.js ./ui.js
+- $HOME/AppData/Roaming/npm/babel -o ./vm.js ./vm.js
 - cd ..
 - cd ..
 - go get github.com/jteeuwen/go-bindata/...
