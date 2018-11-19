@@ -36,7 +36,7 @@ func main() {
 	go func() {
 		// load in bindata
 		http.Handle("/api/lookup", http.HandlerFunc(getForZip))
-		http.Handle("/api/open", http.HandlerFunc(openURL)))
+		http.Handle("/api/open", http.HandlerFunc(openURL))
 		http.Handle("/", http.FileServer(&assetfs.AssetFS{Asset: Asset, AssetDir: AssetDir, AssetInfo: AssetInfo, Prefix: "/frontend/"}))
 		log.Fatal(http.Serve(ln, nil))
 	}()
