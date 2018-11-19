@@ -9,6 +9,7 @@ script:
 - cd frontend
 - cd app
 - C:/Program\ Files/nodejs/npm i
+- export PATH=$PATH:/c/Program\ Files/nodejs/
 - $HOME/AppData/Roaming/npm/babel -o ./ui.js ./ui.js
 - $HOME/AppData/Roaming/npm/babel -o ./vm.js ./vm.js
 - cd ..
