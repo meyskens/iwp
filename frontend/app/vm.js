@@ -23,7 +23,13 @@ var am = new Vue({
         },
         openBrowser(url) {
             console.log(url)
-            window.goapp.openURL(url)
+            if (window.goapp) {
+                window.goapp.openURL(url)
+            } else {
+                let params = new URLSearchParams();
+                params.append('url', url);
+                axios.post("/api/open", params)
+            }
         }
     }
 })

@@ -77,6 +77,11 @@ func getForZip(w http.ResponseWriter, r *http.Request) {
 	w.Write(out)
 }
 
+func openURL(w http.ResponseWriter, r *http.Request) {
+	open.Run(r.PostForm.Get("url"))
+	w.Write([]byte("ok"))
+}
+
 type App struct{}
 
 func (a *App) OpenURL(url string) {
