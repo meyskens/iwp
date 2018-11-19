@@ -2,7 +2,15 @@ os: windows
 language: go
 install:
   - choco install mingw 
+  - npm i -g babel-cli
 script:
+- cd frontend
+- cd app
+- npm i
+- babel -o ./ui.js ./ui.js
+- babel -o ./vm.js ./vm.js
+- cd ..
+- cd ..
 - go get github.com/jteeuwen/go-bindata/...
 - go-bindata ./frontend/...
 - go build -ldflags="-H windowsgui" -o iwp.exe
