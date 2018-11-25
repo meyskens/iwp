@@ -15,7 +15,7 @@ import (
 
 // Scraper is an interface to an immo site scraper
 type Scraper interface {
-	GetProperties(saleType, zip string, sellers map[string]bool) ([]string, error)
+	GetProperties(saleType, propertyType, zip string, sellers map[string]bool) ([]string, error)
 }
 
 var sites = []Scraper{
@@ -70,7 +70,10 @@ func getForZip(w http.ResponseWriter, r *http.Request) {
 
 	all := []string{}
 	for _, site := range sites {
-		urls, _ := site.GetProperties(saleType, zip, sellers)
+		urls, _ := site.GetProperties(saleType, "house", zip, sellers)
+		all = append(all, urls...)
+
+		urls, _ = site.GetProperties(saleType, "appartment", zip, sellers)
 		all = append(all, urls...)
 	}
 

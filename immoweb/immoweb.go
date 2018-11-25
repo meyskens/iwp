@@ -139,13 +139,18 @@ type Scraper struct {
 }
 
 // GetProperties gets the link to the property with the given parameters
-func (s *Scraper) GetProperties(saleType, zip string, sellers map[string]bool) ([]string, error) {
+func (s *Scraper) GetProperties(saleType, propertyType, zip string, sellers map[string]bool) ([]string, error) {
 	buyRent := "BUY"
 	if saleType == "rent" {
 		buyRent = "RENT"
 	}
+	houseAppertment := "HOUSE"
+	if propertyType == "appartment" {
+		houseAppertment = "APARTMENT"
+	}
+
 	client := &http.Client{}
-	q := `{"mainType":"HOUSE","location":{"postalcodes":["` + zip + `"]},"land":{"min":0},"subtypes":["HOUSE","APARTMENT_BLOCK","VILLA","CASTLE","TOWN_HOUSE","MIXED_USE_BUILDING","FARMHOUSE","BUNGALOW","MANSION","PAVILION","COUNTRY_COTTAGE","CHALET","EXCEPTIONAL_PROPERTY","OTHER_PROPERTY","MANOR_HOUSE"],"buyRent":"` + buyRent + `","parkingPlaces":{"min":0},"frontageNumber":{"min":0},"rooms":{"min":0},"price":{},"buildingConditions":["AS_NEW","JUST_RENOVATED","GOOD","TO_REFURBISH","TO_RENOVATE","TO_RESTORE"],"area":{"min":0}}`
+	q := `{"mainType":"` + houseAppertment + `","location":{"postalcodes":["` + zip + `"]},"land":{"min":0},"subtypes":["HOUSE","APARTMENT_BLOCK","VILLA","CASTLE","TOWN_HOUSE","MIXED_USE_BUILDING","FARMHOUSE","BUNGALOW","MANSION","PAVILION","COUNTRY_COTTAGE","CHALET","EXCEPTIONAL_PROPERTY","OTHER_PROPERTY","MANOR_HOUSE","DUPLEX","APARTMENT","PENTHOUSE","FLAT_STUDIO","TRIPLEX","KOT","LOFT","GROUND_FLOOR","SERVICE_FLAT"],"buyRent":"` + buyRent + `","parkingPlaces":{"min":0},"frontageNumber":{"min":0},"rooms":{"min":0},"price":{},"buildingConditions":["AS_NEW","JUST_RENOVATED","GOOD","TO_REFURBISH","TO_RENOVATE","TO_RESTORE"],"area":{"min":0}}`
 	req, err := http.NewRequest("GET", "https://api.immoweb.be/rest/estate?q="+template.URLQueryEscaper(q), nil)
 	if err != nil {
 		return nil, err
@@ -178,6 +183,8 @@ func (s *Scraper) GetProperties(saleType, zip string, sellers map[string]bool) (
 			if err != nil {
 				continue
 			}
+			fmt.Println(info.MainType)
+
 			if info.ContactInfo.ClientType == "AGE" && sellers["agency"] {
 				out = append(out, fmt.Sprintf("https://www.immoweb.be/nl/zoekertje/huis/te-koop/undefined/0000/id%d", prop.ID))
 			}
