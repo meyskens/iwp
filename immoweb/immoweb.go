@@ -183,7 +183,7 @@ func (s *Scraper) GetProperties(saleType, propertyType, zip string, sellers map[
 			if err != nil {
 				continue
 			}
-			fmt.Println(info.MainType)
+			//fmt.Println(info.MainType)
 
 			if info.ContactInfo.ClientType == "AGE" && sellers["agency"] {
 				out = append(out, fmt.Sprintf("https://www.immoweb.be/nl/zoekertje/huis/te-koop/undefined/0000/id%d", prop.ID))

@@ -21,6 +21,13 @@ var am = new Vue({
                 this.loading = false
             })
         },
+        lookupCSV() {
+            this.loading = true
+            axios.get(`/api/lookup/csv?postcode=${this.postcode}&saleType=${this.saleType}&individual=${this.individual ? "true" : ""}&notary=${this.notary ? "true" : ""}&agency=${this.agency ? "true" : ""}`)
+            .then((res) => {
+                this.loading = false
+            })
+        },
         openBrowser(url) {
             console.log(url)
             if (window.goapp) {
