@@ -112,7 +112,7 @@ func getForZipToCSV(w http.ResponseWriter, r *http.Request) {
 		all = append(all, urls...)
 	}
 
-	f, err := os.Create(time.Now().Format("2006-01-02T15:04") + ".csv")
+	f, err := os.Create(zip + "-" + time.Now().Format("2006-01-02T15-04") + ".csv")
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte(err.Error()))
