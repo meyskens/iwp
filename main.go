@@ -55,7 +55,7 @@ func main() {
 func getForZip(w http.ResponseWriter, r *http.Request) {
 	w.Header().Add("content-type", "application/json")
 
-	saleType := r.URL.Query().Get("saletype")
+	saleType := r.URL.Query().Get("saleType")
 	zip := r.URL.Query().Get("postcode")
 	agency := r.URL.Query().Get("agency")
 	individual := r.URL.Query().Get("individual")
